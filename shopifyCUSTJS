@@ -1,0 +1,24 @@
+<script>
+_refersion(function(){
+
+	_rfsn._addTrans({
+		'order_id': '{{order.name}}',
+		'shipping': '{{checkout.shipping_price  | money_without_currency}}',
+		'tax': '{{checkout.tax_price | money_without_currency}}',
+		'discount': '{{checkout.discounts_savings  | money_without_currency}}',
+		'discount_code': '{{checkout.discounts_code}}',
+		'currency_code': 'USD'
+	});
+	_rfsn._addCustomer({
+		'first_name': '{{customer.first_name}}',
+		'last_name': '{{customer.last_name}}',
+		'email': '{{customer.email}}'
+	});
+	_rfsn._addItem({
+		'sku': '{{variant.id}}',
+		'quantity': '{{quantity}}',
+		'price': '{{product.price}}'
+	});
+	_rfsn._sendConversion();
+});
+</script>

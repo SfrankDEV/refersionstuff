@@ -1,0 +1,31 @@
+<script>
+_refersion(function(){
+    _rfsn._setSource('SHOPIFY');
+});
+_refersion(function(){
+    _rfsn._addTrans({
+        'order_id': '{{order.name}}',
+        'shipping': typeof Shopify.checkout.shipping_rate !== typeof undefined ? Shopify.checkout.shipping_rate.price : '',
+        'tax': typeof Shopify.checkout.total_tax !== typeof undefined ? Shopify.checkout.total_tax : '',
+        'discount': typeof Shopify.checkout.discount !== null ? Shopify.checkout.discount.amount : '',
+        'discount_code': typeof Shopify.checkout.discount !== null ? Shopify.checkout.discount.code : '',
+        'currency_code': typeof Shopify.checkout.currency !== typeof undefined ? Shopify.checkout.currency : 'USD'
+    });
+    _rfsn._addCustomer({
+        'first_name': '{{ order.customer.first_name }}',
+        'last_name': '{{ order.customer.last_name }}',
+        'email': typeof Shopify.checkout.email !== typeof undefined ? Shopify.checkout.email : '{{ order.email }}',
+        'ip_address': ''
+    });
+   for (var key in Shopify.checkout.line_items) {
+     if (Shopify.checkout.line_items.hasOwnProperty(key)) {
+       _rfsn._addItem({
+           'sku': Shopify.checkout.line_items[key].sku,
+           'quantity': Number(Shopify.checkout.line_items[key].quantity),
+           'price': Number(Shopify.checkout.line_items[key].price)
+       });
+     }
+   }
+    _rfsn._sendConversion();
+});
+</script>

@@ -5,7 +5,7 @@ _refersion(function(){
 });
 _refersion(function(){
     _rfsn._addTrans({
-        'order_id': '{{order.name}}',
+        'order_id': '{{order.order_number}}',
         'shipping': typeof Shopify.checkout.shipping_rate !== typeof undefined ? Shopify.checkout.shipping_rate.price : '',
         'tax': typeof Shopify.checkout.total_tax !== typeof undefined ? Shopify.checkout.total_tax : '',
         'discount': typeof Shopify.checkout.discount !== null ? Shopify.checkout.discount.amount : '',
